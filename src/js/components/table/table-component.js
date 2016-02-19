@@ -7,18 +7,20 @@ var AppConfig   = require("../../configurations/app-config.js");
 
 var TableComp = React.createClass({
 
-    mixins: [Reflux.listenTo(SearchStore, "onChangeCallback")],
+    mixins: [Reflux.listenTo(TableStore, "onChangeCallback", "initialCallback")],
 
-    onChangeCallback: function(status){
+    initialCallback: function(status){
         this.setState({
-
+            data: status.table.data,
+            isRender: status.table.isRender
         });
     },
 
     render: function() {
+        if(this.state === null || this.state.isRender === false) return null;
         return (
             <div className="table">
-
+                Ben Gedi
             </div>
         );
     }
