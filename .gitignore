@@ -1,0 +1,43 @@
+# Temp files
+build/**
+tmp/**
+dist/**
+coverage/**
+pro
+build
+sandbox.js
+src/js/bundle.js
+src/assets/css
+build
+
+# Sass
+.sass-cache
+
+# Logs
+logs
+*.log
+
+# Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
+.grunt
+
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/Release
+
+# Dependency directory
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
+node_modules
+
+# OS generated files
+.DS_STORE
+
+# Thumbnails
+._*
+Thumbs.db
+
+# Codio
+*.codio
+
+# eslint
+*.eslintrc
+
+

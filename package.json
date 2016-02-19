@@ -1,0 +1,45 @@
+{
+  "name": "React-Reflux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --hot --inline --devtool source-map --progress --colors --content-base src",
+    "build": "rimraf build/* && webpack --progress --colors && xcopy pro build /S /EXCLUDE:xcopyignore.txt && node post-build.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-polyfill": "^6.3.14",
+    "classnames": "^2.2.0",
+    "es6-promise": "^3.0.2",
+    "event-emitter": "^0.3.3",
+    "fetch-jsonp": "^1.0.0",
+    "lodash": "^3.10.1",
+    "moment": "^2.11.2",
+    "react": "^0.14.0",
+    "react-addons-css-transition-group": "^0.14.2",
+    "react-addons-transition-group": "*",
+    "react-dom": "0.14.1",
+    "react-hot-loader": "^1.3.0",
+    "reflux": "^0.2.7"
+  },
+  "devDependencies": {
+    "babel-core": "^5.8.25",
+    "babel-loader": "^5.3.2",
+    "css-loader": "^0.19.0",
+    "extract-text-webpack-plugin": "^0.8.2",
+    "file-loader": "^0.8.4",
+    "html-webpack-plugin": "^1.6.2",
+    "node-sass": "^3.3.3",
+    "raw-loader": "^0.5.1",
+    "replace": "^0.3.0",
+    "rimraf": "^2.3.2",
+    "sass-loader": "^3.0.0",
+    "style-loader": "^0.12.4",
+    "url-loader": "^0.5.6",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.0",
+    "webpack-hot-middleware": "^2.4.1"
+  }
+}
