@@ -1,0 +1,109 @@
+*{
+	font-family: "Open Sans";
+}
+
+.files_table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid lightgrey;
+    margin: auto;
+}
+
+.files_table__body__row_cell {
+    border: 1px solid lightgrey;
+    padding: 10px;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    &.group{
+    	cursor: pointer;
+    	transition: all .2s ease;
+    	&.active {
+		    -webkit-box-shadow: inset 0px 0px 5px 3px rgba(95,90,245,1);
+		    -moz-box-shadow: inset 0px 0px 5px 3px rgba(95,90,245,1);
+		    box-shadow: inset 0px 0px 5px 3px rgba(95,90,245,1);
+		    border: none;
+		    .clients_group{
+				display: block;
+			}
+			&:hover{
+				color: initial;
+			}
+		}
+    	.clients_group {
+	    	display: none;
+	    	padding: 10px;
+	    	color: initial;
+		    position: absolute;
+		    width: 200px;
+		    background: white;
+		    border: 1px solid lightgrey;
+		        right: 165px;
+		    top: 61px;
+		}
+    }
+
+    &:hover{
+    	color: lightblue;
+    }
+
+
+}
+
+
+.files_table__headers__header {
+    border: 1px solid lightgrey;
+    padding: 15px;
+    position: relative;
+    text-transform: capitalize;
+
+    &.clients{
+    	&:hover{
+	    	&:before {
+			    display: none;
+			};
+	    }
+    }
+
+    &.ascending, &.descending{
+    	&:before{
+			content: "";
+		    width: 0;
+		    height: 0;
+		    border-style: solid;
+		    position: absolute;
+		    right: 0;
+		    left: 0;
+		    bottom: 4px;
+		    margin: auto;
+    	}
+    }
+
+    &:hover:before {
+    	content: "";
+	    width: 0;
+	    height: 0;
+	    border-style: solid;
+	    position: absolute;
+	    right: 0;
+	    left: 0;
+	    bottom: 4px;
+	    margin: auto;
+	    border-width: 5px 4px 0 4px;
+	    border-color: lightgrey transparent transparent transparent;
+    }
+
+    &.ascending{
+    	&:before {
+		    border-width: 5px 4px 0 4px;
+		    border-color: #000000 transparent transparent transparent;
+	    }
+	}
+
+	&.descending{
+		&:before {
+		    border-width: 0 4px 5px 4px;
+			border-color: transparent transparent #000000 transparent;
+	    }
+	}
+}

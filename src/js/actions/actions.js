@@ -1,8 +1,8 @@
 var Reflux    = require("reflux");
 
 var Actions = Reflux.createActions({
-    "searchQuery"       : {},
-    "changeSearchValue" : {}
+    "sortTable"          : {},
+    "toggleClientsGroup" : {}
 });
 
 module.exports = Actions;
