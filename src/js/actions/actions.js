@@ -2,7 +2,9 @@ var Reflux    = require("reflux");
 
 var Actions = Reflux.createActions({
     "sortTable"          : {},
-    "toggleClientsGroup" : {}
+    "toggleClientsGroup" : {},
+    "toggleFilter"       : {},
+    "toggleClientFilter" : {}
 });
 
 module.exports = Actions;

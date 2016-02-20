@@ -12,16 +12,14 @@
 .files_table__body__row_cell {
     border: 1px solid lightgrey;
     padding: 10px;
-    border-collapse: collapse;
-    border-spacing: 0;
 
     &.group{
     	cursor: pointer;
     	transition: all .2s ease;
     	&.active {
-		    -webkit-box-shadow: inset 0px 0px 5px 3px rgba(95,90,245,1);
-		    -moz-box-shadow: inset 0px 0px 5px 3px rgba(95,90,245,1);
-		    box-shadow: inset 0px 0px 5px 3px rgba(95,90,245,1);
+		    -webkit-box-shadow: inset 0px 0px 5px 3px $selected;
+		    -moz-box-shadow: inset 0px 0px 5px 3px $selected;
+		    box-shadow: inset 0px 0px 5px 3px $selected;
 		    border: none;
 		    .clients_group{
 				display: block;
@@ -35,20 +33,17 @@
 	    	padding: 10px;
 	    	color: initial;
 		    position: absolute;
-		    width: 200px;
 		    background: white;
 		    border: 1px solid lightgrey;
-		        right: 165px;
-		    top: 61px;
+		    left: 968px;
+    		top: 45px;
+			list-style: none;
 		}
 
 	    &:hover{
-	    	color: lightblue;
+	    	color: $selected;
 	    }
     }
-
-
-
 }
 
 

@@ -3,6 +3,7 @@ var ReactDOM   = require('react-dom');
 var Reflux     = require("reflux");
 var ClassNames = require("classnames")
 var Actions    = require("../../actions/actions.js");
+var FilterComp = require("./filter-component.js");
 var TableStore = require("../../stores/table-store.js");
 var AppConfig  = require("../../configurations/app-config.js");
 
@@ -38,7 +39,9 @@ var TableComp = React.createClass({
             var sortType = header.isSorted === true ? header.sortBy : "";
             if(header.value === "clients") {
                 return (
-                    <th scope="col" className={"files_table__headers__header "+ header.value} ref="clientFilter" key={header.value}>{header.lable}<i className="fa fa-filter"></i></th>
+                    <th scope="col" className={"files_table__headers__header "+ header.value} ref="clientFilter" key={header.value}>{header.lable}
+                        <FilterComp id="clientsFilter"/>
+                    </th>
                 );
             }
             return (
@@ -54,6 +57,16 @@ var TableComp = React.createClass({
     createTableRows: function(data){
         return (data.map(function(item, i){
 
+            function createClients(items){
+                return items.map(function(item){
+                    return (
+                        <li key={item} className="clients_group__item">
+                            {item}
+                        </li>
+                    );
+                });
+            }
+
             var isCellGroupActive = ClassNames("files_table__body__row_cell", "group",{active: item.clients.isActive});
             return (
                 <tr className="files_table__body__row" key={item.file_name}>
@@ -62,9 +75,9 @@ var TableComp = React.createClass({
                     <td className="files_table__body__row_cell">{item.date.time}</td>
                     <td className={isCellGroupActive} onClick={this.showClients.bind(this, item.file_name)}>
                         {item.clients.data.length > 1 ? "Clients Group" : item.clients.data[0]}
-                        <div className="clients_group">
-                            {item.clients.data.join(', ')}
-                        </div>
+                        <ul className="clients_group">
+                            {createClients(item.clients.data)}
+                        </ul>
                     </td>
                 </tr>
             );

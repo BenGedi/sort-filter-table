@@ -17,7 +17,10 @@ var SearchStore = Reflux.createStore({
 	UIState: {
 		table:{
 			isRender: false,
-			clients:[],
+			clients: {
+				isRender: false,
+				data: []
+			},
 			headers: [],
 			data: [
 				{
@@ -82,7 +85,6 @@ var SearchStore = Reflux.createStore({
 		// create table headers by the json keys
 		this.initTableHeaders(this.UIState.table.data);
 
-
 		this.initSortTable(this.UIState.table.data, "file_name");
         return this.UIState;
     },
@@ -115,13 +117,22 @@ var SearchStore = Reflux.createStore({
     },
 
     initMergeArrays: function(data){
-    	var clients = []
+    	var clients = [];
     	data.forEach(function(item, i){
+    		item.clients.data.sort();
     		clients = clients.concat(item.clients.data.filter(function (item) {
 			    return clients.indexOf(item) < 0;
 			}));
     	});
-    	this.UIState.table.clients = clients;
+
+    	clients = clients.map(function(client, i){
+    		return {
+    			value: client,
+    			isSelected: false
+    		}
+    	})
+
+    	this.UIState.table.clients.data = clients;
     },
 
     initTableHeaders: function(data){
@@ -151,6 +162,19 @@ var SearchStore = Reflux.createStore({
 				item.clients.isActive = false;
 			}
 		});
+		this.trigger(this.UIState);
+	},
+
+	onToggleClientFilter: function(value) {
+		this.UIState.table.clients.data.forEach(function(client){
+			if(client.value === value){
+				client.isSelected = !client.isSelected;
+			}
+		});
+		this.trigger(this.UIState);
+	},
+	toggleFilter: function() {
+		this.UIState.table.clients.isRender = !this.UIState.table.clients.isRender;
 		this.trigger(this.UIState);
 	}
 });
