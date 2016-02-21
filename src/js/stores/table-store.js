@@ -12,9 +12,70 @@ var SearchStore = Reflux.createStore({
 	listenables: [Actions],
 
 	domainState: {
+		filter: [],
+		table:{
+			isRender: false,
+			clients: {
+				isRender: false,
+				data: []
+				},
+			headers: [],
+			data: [
+				{
+					file_name: "storage.json",
+					file_size: 3,
+					date: {
+						time: UTILS.setFormatDateTime(new Date("May 13 2015")),
+						timeObject: new Date("May 13 2015")
+					},
+					clients: {
+						isActive: false,
+						data:["Microsoft","Google","Facebook","Avg","Amazon","Ebay","Amdocs","Nice","Verint","EMC"]
+
+					}
+				},
+				{
+					file_name: "accounts.json",
+					file_size: 2,
+					date: {
+							time: UTILS.setFormatDateTime(new Date("January 25 2015")),
+							timeObject: new Date("January 25 2015")
+					},
+					clients: {
+						isActive: false,
+						data:["Microsoft","Facebook","Ebay","Verint","Marvell","Cisco"]
+					}
+				},
+				{
+					file_name: "managers.json",
+					file_size: 1,
+					date: {
+						time: UTILS.setFormatDateTime(new Date("January 18 2015")),
+						timeObject: new Date("January 18 2015")
+					},
+					clients: {
+						isActive: false,
+						data: ["Amazon","Ebay","Amdocs","Nice","Verint","EMC"]
+					}
+				},
+				{
+					file_name: "attacks.json",
+					file_size: 10,
+					date: {
+						time: UTILS.setFormatDateTime(new Date("April 19 2016")),
+						timeObject: new Date("April 19 2016")
+					},
+					clients: {
+						isActive: false,
+						data: ["Nice","Microsoft","Amazon","Marvell","Cisco"]
+					}
+				}
+			]
+		}
 	},
 
 	UIState: {
+		filter: [],
 		table:{
 			isRender: false,
 			clients: {
@@ -133,6 +194,7 @@ var SearchStore = Reflux.createStore({
     	})
 
     	this.UIState.table.clients.data = clients;
+    	this.domainState.table.clients.data = _.cloneDeep(clients);
     },
 
     initTableHeaders: function(data){
@@ -169,12 +231,43 @@ var SearchStore = Reflux.createStore({
 		this.UIState.table.clients.data.forEach(function(client){
 			if(client.value === value){
 				client.isSelected = !client.isSelected;
+				if(client.isSelected === true){
+					this.UIState.filter.push(client.value);
+				}
+				else{
+					var index = this.UIState.filter.indexOf(client.value);
+					if (~index) this.UIState.filter.splice(index,1);
+				}
 			}
-		});
+		}.bind(this));
 		this.trigger(this.UIState);
 	},
+
 	toggleFilter: function() {
 		this.UIState.table.clients.isRender = !this.UIState.table.clients.isRender;
+		this.trigger(this.UIState);
+	},
+
+	onRemoveAllFilterCheckboxes: function(){
+		this.UIState.table.clients.data = _.cloneDeep(this.domainState.table.clients.data);
+		this.UIState.table.data = _.cloneDeep(this.domainState.table.data);
+		this.initMergeArrays(this.UIState.table.data);
+		this.UIState.filter = [];
+		this.trigger(this.UIState);
+	},
+
+	onFilterTable: function() {
+		if(this.UIState.filter.length < 1) return;
+		var filteredClients = [];
+		this.UIState.table.data.forEach(function(item){
+			item.clients.data.forEach(function(client){
+				if(this.UIState.filter.includes(client)){
+					var index = UTILS.arrayObjectIndexOf(filteredClients, item.file_name,"file_name");
+					if(index === -1) filteredClients.push(item);
+				}
+			}.bind(this));
+		}.bind(this));
+		this.UIState.table.data = filteredClients;
 		this.trigger(this.UIState);
 	}
 });

@@ -32,12 +32,20 @@ var FilterOptionsComp = React.createClass({
         return items.map(function(item, i){
             return (
                 <li key={item.value} className="filter_options__list_item">
-                    <input type="checkbox" value={item.value} id={"checkbox-"+item.value} onChange={this.toggleClientFilter} checked={item.isSelected}/>
-                    <lable htmlFor={"checkbox-"+item.value}>{item.value}</lable>
+                    <input type="checkbox" value={item.value} id={item.value} onChange={this.toggleClientFilter} checked={item.isSelected}/>
+                    <lable htmlFor={item.value}>{item.value}</lable>
                 </li>
             );
 
         }.bind(this));
+    },
+
+    removeAllFilterCheckboxes: function() {
+        Actions.removeAllFilterCheckboxes();
+    },
+
+    filterTable: function(){
+        Actions.filterTable();
     },
 
     render: function() {
@@ -45,14 +53,14 @@ var FilterOptionsComp = React.createClass({
         return (
             <div className="filter_options">
                 <header className="filter_options__header">
-                    <h3 className="filter_options__header_title">Clients</h3>
+                    <h3 className="filter_options__header_title">Clients Filter</h3>
                 </header>
                 <ul className="filter_options__list">
                     {this.createItems.call(this, this.state.clients)}
                 </ul>
                 <footer className="filter_options__footer">
-                    <button className="filter_options__footer__button clear">Clear</button>
-                    <button className="filter_options__footer__button filter">Filter</button>
+                    <button className="filter_options__footer__button reset" onClick={this.removeAllFilterCheckboxes}>Reset</button>
+                    <button className="filter_options__footer__button filter" onClick={this.filterTable}>Filter</button>
                 </footer>
             </div>
         );

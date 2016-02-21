@@ -29,20 +29,18 @@ var FilterComp = React.createClass({
     },
 
     clickOutsideComponent: function(e) {
-        console.log("click outside Information Ips component");
+        console.log("click outside filter component");
         this.unmountSubComponent();
     },
 
     renderSubComponent: function (e) {
         if(this.state.isActive === true) return;
         document.addEventListener("click", this.clickComponent, false);
-        // ReactDOM.render(<FilterOptionsComp/>, this.refs[this.props.id]);
         Actions.toggleFilter();
     },
 
     unmountSubComponent: function (){
         if(this.state.isActive === true) {
-            // ReactDOM.unmountComponentAtNode(this.refs[this.props.id]);
             document.removeEventListener("click", this.clickComponent, false);
             Actions.toggleFilter();
         }
@@ -61,7 +59,9 @@ var FilterComp = React.createClass({
                     <button className={filterClassName} onClick={this.renderSubComponent} >
                         <i className="fa fa-filter"></i>
                     </button>
-                    <FilterOptionsComp/>
+                    <div ref={this.props.id}>
+                        <FilterOptionsComp/>
+                    </div>
                 </div>
         );
     }
