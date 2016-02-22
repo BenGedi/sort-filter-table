@@ -35,6 +35,45 @@ var SearchStore = Reflux.createStore({
 					}
 				},
 				{
+					file_name: "people.json",
+					file_size: 7,
+					date: {
+						time: UTILS.setFormatDateTime(new Date("June 17 2014")),
+						timeObject: new Date("June 17 2014")
+					},
+					clients: {
+						isActive: false,
+						data:["Microsoft","Google","Amdocs","Nice","Verint","EMC"]
+
+					}
+				},
+				{
+					file_name: "security.json",
+					file_size: 3,
+					date: {
+						time: UTILS.setFormatDateTime(new Date("May 17 2014")),
+						timeObject: new Date("May 13 2015")
+					},
+					clients: {
+						isActive: false,
+						data:["Microsoft","Amazon","Ebay","Amdocs","Nice"]
+
+					}
+				},
+				{
+					file_name: "somefile.json",
+					file_size: 3,
+					date: {
+						time: UTILS.setFormatDateTime(new Date("May 21 2015")),
+						timeObject: new Date("May 13 2015")
+					},
+					clients: {
+						isActive: false,
+						data:["Google","Facebook","Ebay","Nice","Verint","EMC"]
+
+					}
+				},
+				{
 					file_name: "accounts.json",
 					file_size: 2,
 					date: {
@@ -94,6 +133,45 @@ var SearchStore = Reflux.createStore({
 					clients: {
 						isActive: false,
 						data:["Microsoft","Google","Facebook","Avg","Amazon","Ebay","Amdocs","Nice","Verint","EMC"]
+
+					}
+				},
+				{
+					file_name: "people.json",
+					file_size: 7,
+					date: {
+						time: UTILS.setFormatDateTime(new Date("June 17 2014")),
+						timeObject: new Date("June 17 2014")
+					},
+					clients: {
+						isActive: false,
+						data:["Microsoft","Google","Amdocs","Nice","Verint","EMC"]
+
+					}
+				},
+				{
+					file_name: "security.json",
+					file_size: 3,
+					date: {
+						time: UTILS.setFormatDateTime(new Date("May 17 2014")),
+						timeObject: new Date("May 13 2015")
+					},
+					clients: {
+						isActive: false,
+						data:["Microsoft","Amazon","Ebay","Amdocs","Nice"]
+
+					}
+				},
+				{
+					file_name: "somefile.json",
+					file_size: 3,
+					date: {
+						time: UTILS.setFormatDateTime(new Date("May 21 2015")),
+						timeObject: new Date("May 13 2015")
+					},
+					clients: {
+						isActive: false,
+						data:["Google","Facebook","Ebay","Nice","Verint","EMC"]
 
 					}
 				},

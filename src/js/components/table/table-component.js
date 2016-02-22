@@ -67,14 +67,16 @@ var TableComp = React.createClass({
                 });
             }
 
-            var isCellGroupActive = ClassNames("files_table__body__row_cell", "group",{active: item.clients.isActive});
+            var cellGroupActiveClass = ClassNames("files_table__body__row_cell", "group",{active: item.clients.isActive});
+            var cellGroupTitle = item.clients.isActive === true ? "close clients" : "open Clients";
+
             return (
                 <tr className="files_table__body__row" key={item.file_name}>
                     <td className="files_table__body__row_cell">{item.file_name}</td>
                     <td className="files_table__body__row_cell">{item.file_size+"MB"}</td>
                     <td className="files_table__body__row_cell">{item.date.time}</td>
-                    <td className={isCellGroupActive} onClick={this.showClients.bind(this, item.file_name)}>
-                        {item.clients.data.length > 1 ? "Clients Group" : item.clients.data[0]}
+                    <td className={cellGroupActiveClass}  title={"Click to "+cellGroupTitle} onClick={this.showClients.bind(this, item.file_name)}>
+                        {item.clients.data.length > 1 ? <span>Group of {item.clients.data.length} clients</span> : item.clients.data[0]}
                         <ul className="clients_group">
                             {createClients(item.clients.data)}
                         </ul>
