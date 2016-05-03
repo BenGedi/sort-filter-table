@@ -3,7 +3,6 @@ build/**
 tmp/**
 dist/**
 coverage/**
-pro
 build
 sandbox.js
 src/js/bundle.js
