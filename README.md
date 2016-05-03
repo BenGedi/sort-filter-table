@@ -1,7 +1,7 @@
 
 This repo is using React.js, Reflux, Webpack
 
-Demo: http://bengedi.github.io/sort-filter-table-site
+[Demo](http://bengedi.github.io/sort-filter-table-site)
 
 
 ## Installing
